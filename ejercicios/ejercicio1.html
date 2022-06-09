@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Ejercicio 1.css">
+
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <form action="" onsubmit="calcular()">
+        <label for="numeros">Ingrese números separados por coma:</label><br>
+        <input type="text" name="numeros" id="numeros">
+        <button type="submit">Calcular</button>
+    </form>
+
+    <script>
+        function calcular() {
+            let respuesta = document.getElementById("numeros").value.replace(" ", "");
+            let numeros = [];
+            respuesta = respuesta.split(",");
+
+            respuesta.forEach((numero) => {
+                if (typeof numero == "number") {
+                    numeros.push(Number(numero))
+                };
+            });
+            alert(respuesta)
+            alert(numeros)
+        };
+    </script>
+</body>
+
+</html>
