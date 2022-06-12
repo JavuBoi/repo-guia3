@@ -22,33 +22,34 @@
 
     <script>
         function calcular() {
+            // La respuesta del usuario en el input
+            // quitando los posibles espacios y generando un array separando por coma
             let respuesta = (document.getElementById("numeros").value.replace(" ", "")).split(",");
-            let resumen = document.getElementById("resumen");
+            // Array vacío para guardar los números
             let numeros = [];
-            let suma;
-            let media;
-            let mayor;
-            let menor;
-
+            
+            // Recorre el arreglo y guarda solo los números en la variable "numeros"
             respuesta.forEach((numero) => {
                 if (!isNaN(numero)) {
-                    numeros.push(parseInt(numero))
+                    numeros.push(parseInt(numero));
                 };
             });
 
-            suma = numeros.reduce((num, next_num) => num + next_num, 0);
-            media = suma / numeros.length;
-            mayor = numeros.reduce(function (num, next_num) {
+            let suma = numeros.reduce((num, next_num) => num + next_num, 0);
+            let media = suma / numeros.length;
+            let mayor = numeros.reduce(function (num, next_num) {
                 return Math.max(num, next_num);
             });
-            menor = numeros.reduce(function (num, next_num) {
+            let menor = numeros.reduce(function (num, next_num) {
                 return Math.min(num, next_num);
             });
 
-            resumen.innerHTML = `Suma de todos los números: ${!isNaN(suma) ? suma : 0} <br>
-                                Media de todos los números: ${!isNaN(media) ? media : 0} <br>
-                                Número mayor: ${!isNaN(mayor) ? mayor : 0} <br>
-                                Número menor: ${!isNaN(menor) ? menor : 0}`;
+            let resumen = `Suma de todos los números: ${!isNaN(suma) ? suma : 0} <br>
+                            Media de todos los números: ${!isNaN(media) ? media : 0} <br>
+                            Número mayor: ${!isNaN(mayor) ? mayor : 0} <br>
+                            Número menor: ${!isNaN(menor) ? menor : 0}`;
+
+            document.getElementById("resumen").innerHTML = resumen;
         };
 
         function reiniciar() {
