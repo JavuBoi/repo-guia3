@@ -11,25 +11,49 @@
 </head>
 
 <body>
-    <form action="" onsubmit="calcular()">
+    <form action="" onsubmit="return false">
         <label for="numeros">Ingrese números separados por coma:</label><br>
         <input type="text" name="numeros" id="numeros">
-        <button type="submit">Calcular</button>
+        <button type="button" onclick="calcular()">Calcular</button>
+        <button type="button" onclick="reiniciar()">Reiniciar</button>
     </form>
+
+    <p id="resumen"></p>
 
     <script>
         function calcular() {
-            let respuesta = document.getElementById("numeros").value.replace(" ", "");
+            let respuesta = (document.getElementById("numeros").value.replace(" ", "")).split(",");
+            let resumen = document.getElementById("resumen");
             let numeros = [];
-            respuesta = respuesta.split(",");
+            let suma;
+            let media;
+            let mayor;
+            let menor;
 
             respuesta.forEach((numero) => {
-                if (typeof numero == "number") {
-                    numeros.push(Number(numero))
+                if (!isNaN(numero)) {
+                    numeros.push(parseInt(numero))
                 };
             });
-            alert(respuesta)
-            alert(numeros)
+
+            suma = numeros.reduce((num, next_num) => num + next_num, 0);
+            media = suma / numeros.length;
+            mayor = numeros.reduce(function (num, next_num) {
+                return Math.max(num, next_num);
+            });
+            menor = numeros.reduce(function (num, next_num) {
+                return Math.min(num, next_num);
+            });
+
+            resumen.innerHTML = `Suma de todos los números: ${!isNaN(suma) ? suma : 0} <br>
+                                Media de todos los números: ${!isNaN(media) ? media : 0} <br>
+                                Número mayor: ${!isNaN(mayor) ? mayor : 0} <br>
+                                Número menor: ${!isNaN(menor) ? menor : 0}`;
+        };
+
+        function reiniciar() {
+            document.getElementById("resumen").innerHTML = "";
+            document.getElementById("numeros").value = "";
         };
     </script>
 </body>
