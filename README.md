@@ -2,6 +2,7 @@
 
 ## Descripción
 Este es un repositorio de clases en el cual desarrollo una guía de ejercicios de Javascript.
+- Estado: Sin finalizar
 
 ## Ejercicios
 
